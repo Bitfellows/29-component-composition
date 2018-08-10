@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { noteUpdate } from '../action/note-actions';
+import { connect } from "react-redux";
+import { noteUpdate } from "../action/note-actions";
 
 class NoteUpdateForm extends Component {
-  
   constructor(props) {
     super(props);
     this.state = { ...props.note };
   }
-  
+
   onSubmit = event => {
     event.preventDefault();
     this.props.onDone();
@@ -44,17 +43,25 @@ class NoteUpdateForm extends Component {
         </label>
         <label>
           <span>completed</span>
-          <input name="completed" type="checkbox" checked={this.state.completed} />
+          <input
+            name="completed"
+            type="checkbox"
+            checked={this.state.completed}
+          />
         </label>
-        <button>Create Note</button>
-        <button type="button" onClick={this.onCancel}>cancel</button>
+        <button>Update Note</button>
+        <button type="button" onClick={this.onCancel}>
+          cancel
+        </button>
       </form>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   noteUpdate: note => dispatch(noteUpdate(note))
-})
-export default connect(null, mapDispatchToProps)(NoteUpdateForm);
-
+});
+export default connect(
+  null,
+  mapDispatchToProps
+)(NoteUpdateForm);
